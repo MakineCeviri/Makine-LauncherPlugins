@@ -1,29 +1,33 @@
-# MakineAI Plugin Registry
+# MakineAI Eklenti Kayıt Defteri
 
-Official plugin registry for [MakineAI Launcher](https://github.com/MakineCeviri/MakineAI-Launcher).
+MakineAI Launcher eklenti ekosisteminin merkezi deposu.
 
-## How It Works
+Bu depo, Launcher'ın başlangıçta kontrol ettiği `index.json` dosyasını barındırır. Eklentiler bu liste aracılığıyla keşfedilir, güncellenir ve kurulur.
 
-This repository serves as the central index for approved MakineAI plugins. The launcher checks `index.json` on startup to discover available plugins and updates.
+## Nasıl Çalışır
 
-## For Plugin Developers
+```
+Geliştirici eklentisini GitHub'a yükler
+    ↓
+index.json'a eklenir (id, versiyon, indirme bağlantısı, SHA-256)
+    ↓
+MakineAI Launcher başlangıçta index.json'u kontrol eder
+    ↓
+Kullanıcı "Kur" der → .makine paketi indirilir → eklenti kurulur
+```
 
-1. Create your plugin using the [plugin template](https://github.com/MakineCeviri/makineai-plugin-template)
-2. Build and package as `.makine` format
-3. Publish on GitHub with the `makineai-plugin` topic
-4. [Submit for review](https://github.com/MakineCeviri/makineai-plugins/issues/new?template=plugin-submission.md)
-
-## Plugin Index Format
+## index.json Formatı
 
 ```json
 {
   "version": 1,
+  "updatedAt": "2026-03-16T00:00:00Z",
   "plugins": [
     {
       "id": "com.makineceviri.live",
       "version": "1.0.0",
-      "githubRepo": "MakineCeviri/makineai-plugin-live",
-      "downloadUrl": "https://github.com/MakineCeviri/.../releases/download/v1.0.0/live.makine",
+      "githubRepo": "MakineCeviri/MakineAI-Plugin-OCR",
+      "downloadUrl": "https://github.com/.../releases/download/v1.0.0/live.makine",
       "sha256": "abc123...",
       "size": 2500000
     }
@@ -31,14 +35,38 @@ This repository serves as the central index for approved MakineAI plugins. The l
 }
 ```
 
-## Approval Criteria
+| Alan | Açıklama |
+|------|----------|
+| `id` | Eklentinin benzersiz kimliği (`com.gelistirici.eklenti-adi`) |
+| `version` | Semantik versiyon (`1.0.0`) |
+| `githubRepo` | GitHub repo yolu (`Kullanici/Repo`) |
+| `downloadUrl` | `.makine` dosyasının doğrudan indirme bağlantısı |
+| `sha256` | Paketin SHA-256 sağlama toplamı |
+| `size` | Paket boyutu (byte) |
 
-- Open source (GPL-3.0 or compatible)
-- No malicious code, no data collection without consent
-- Follows [Plugin API](https://github.com/MakineCeviri/MakineAI-Launcher/tree/main/core/include/makineai/plugin) conventions
-- manifest.json complete and valid
-- Builds cleanly with MinGW GCC 13.1+
+## Resmi Eklentiler
 
-## License
+| Eklenti | Repo | Açıklama |
+|---------|------|----------|
+| MakineAI Live (OCR) | [MakineAI-Plugin-OCR](https://github.com/MakineCeviri/MakineAI-Plugin-OCR) | Gerçek zamanlı ekran OCR ve çeviri overlay |
+| MakineAI TextHook | [MakineAI-Plugin-TextHook](https://github.com/MakineCeviri/MakineAI-Plugin-TextHook) | Oyun belleğinden metin çıkarma ve gömülü çeviri |
+
+## Topluluk Eklentisi Nasıl Eklenir
+
+1. [MakineAI-Plugin-Template](https://github.com/MakineCeviri/MakineAI-Plugin-Template) şablonunu kullanarak eklentinizi oluşturun
+2. GitHub'da yayınlayın ve `makineai-plugin` etiketini ekleyin
+3. Bu depoda bir [issue](https://github.com/MakineCeviri/MakineAI-Plugins/issues/new) açarak eklemenizi talep edin
+4. `index.json`'a eklenmek için PR gönderin
+
+## Güvenlik
+
+- Tüm indirmeler yalnızca **HTTPS** üzerinden
+- Her paket **SHA-256** sağlama toplamı ile doğrulanır
+- `.makine` formatı (MKPK v2) — zstd sıkıştırmalı tar arşivi
+- ZIP yol geçişi koruması (path traversal engeli)
+- Tehlikeli dosya türleri engellenir (.exe, .bat, .cmd, .ps1)
+- DLL imza doğrulaması (Authenticode)
+
+## Lisans
 
 GPL-3.0
