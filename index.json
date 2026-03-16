@@ -7,8 +7,8 @@
             "version": "0.1.0",
             "githubRepo": "MakineCeviri/MakineAI-Plugin-OCR",
             "downloadUrl": "",
-            "sha256": "259e832d834b4f87ea3921ca77a91fc09cd8c699c4c1bc498998d74aa38a0284",
-            "size": 20887385
+            "sha256": "becd14a5042a1e87ee7e0a6975cd45255292efb02194643706b7b9305315ab9c",
+            "size": 20886909
         },
         {
             "id": "com.makineceviri.texthook",
