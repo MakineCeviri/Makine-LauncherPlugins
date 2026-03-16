@@ -1,22 +1,22 @@
 {
     "version": 2,
-    "updatedAt": "2026-03-16T00:00:00Z",
+    "updatedAt": "2026-03-16T05:00:00Z",
     "plugins": [
         {
             "id": "com.makineceviri.live",
             "version": "0.1.0",
             "githubRepo": "MakineCeviri/MakineAI-Plugin-OCR",
             "downloadUrl": "",
-            "sha256": "",
-            "size": 0
+            "sha256": "259e832d834b4f87ea3921ca77a91fc09cd8c699c4c1bc498998d74aa38a0284",
+            "size": 20887385
         },
         {
             "id": "com.makineceviri.texthook",
             "version": "0.1.0",
             "githubRepo": "MakineCeviri/MakineAI-Plugin-TextHook",
             "downloadUrl": "",
-            "sha256": "",
-            "size": 0
+            "sha256": "c699a86f8c4109b0857cd942653490ca0105c655a17ee03446433c5ac7ef73ae",
+            "size": 79703
         }
     ]
 }
