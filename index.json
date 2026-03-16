@@ -4,7 +4,7 @@
     "plugins": [
         {
             "id": "com.makineceviri.live",
-            "version": "0.3.0",
+            "version": "0.1.0",
             "githubRepo": "MakineCeviri/MakineAI-Plugin-OCR",
             "downloadUrl": "",
             "sha256": "",

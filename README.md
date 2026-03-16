@@ -25,9 +25,9 @@ Kullanıcı "Kur" der → .makine paketi indirilir → eklenti kurulur
   "plugins": [
     {
       "id": "com.makineceviri.live",
-      "version": "0.3.0",
+      "version": "0.1.0",
       "githubRepo": "MakineCeviri/MakineAI-Plugin-OCR",
-      "downloadUrl": "https://github.com/.../releases/download/v0.3.0/makineai-ocr.makine",
+      "downloadUrl": "https://github.com/.../releases/download/v0.1.0/makineai-ocr.makine",
       "sha256": "abc123...",
       "size": 2500000
     }
