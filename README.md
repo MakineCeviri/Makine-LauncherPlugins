@@ -25,9 +25,9 @@ Kullanıcı "Kur" der → .makine paketi indirilir → eklenti kurulur
   "plugins": [
     {
       "id": "com.makineceviri.live",
-      "version": "1.0.0",
+      "version": "0.3.0",
       "githubRepo": "MakineCeviri/MakineAI-Plugin-OCR",
-      "downloadUrl": "https://github.com/.../releases/download/v1.0.0/live.makine",
+      "downloadUrl": "https://github.com/.../releases/download/v0.3.0/makineai-ocr.makine",
       "sha256": "abc123...",
       "size": 2500000
     }
@@ -48,7 +48,7 @@ Kullanıcı "Kur" der → .makine paketi indirilir → eklenti kurulur
 
 | Eklenti | Repo | Açıklama |
 |---------|------|----------|
-| MakineAI Live (OCR) | [MakineAI-Plugin-OCR](https://github.com/MakineCeviri/MakineAI-Plugin-OCR) | Gerçek zamanlı ekran OCR ve çeviri overlay |
+| MakineAI OCR | [MakineAI-Plugin-OCR](https://github.com/MakineCeviri/MakineAI-Plugin-OCR) | Gerçek zamanlı ekran OCR ve çeviri overlay |
 | MakineAI TextHook | [MakineAI-Plugin-TextHook](https://github.com/MakineCeviri/MakineAI-Plugin-TextHook) | Oyun belleğinden metin çıkarma ve gömülü çeviri |
 
 ## Topluluk Eklentisi Nasıl Eklenir
