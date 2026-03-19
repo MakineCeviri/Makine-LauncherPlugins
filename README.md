@@ -1,6 +1,6 @@
 # Makine Launcher — Eklenti Kayıt Defteri
 
-Makine Launcher eklenti ekosisteminin merkezi deposu.
+Açık kaynak kodlu **[Makine Launcher](https://github.com/MakineCeviri/Makine-Launcher)** eklenti ekosisteminin merkezi deposu. Makine Launcher, Türkçe oyun çeviri paketlerini yöneten ücretsiz bir masaüstü uygulamasıdır.
 
 Bu depo, Launcher'ın başlangıçta kontrol ettiği `index.json` dosyasını barındırır. Eklentiler bu liste aracılığıyla keşfedilir, güncellenir ve kurulur.
 
