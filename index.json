@@ -1,6 +1,6 @@
 {
     "version": 2,
-    "updatedAt": "2026-03-16T05:00:00Z",
+    "updatedAt": "2026-03-19T12:00:00Z",
     "plugins": [
         {
             "id": "com.makineceviri.live",
@@ -12,7 +12,7 @@
         },
         {
             "id": "com.makineceviri.hook",
-            "version": "0.1.0",
+            "version": "0.2.0",
             "githubRepo": "MakineCeviri/Makine-LauncherPlugin-Hook",
             "downloadUrl": "",
             "sha256": "c699a86f8c4109b0857cd942653490ca0105c655a17ee03446433c5ac7ef73ae",
