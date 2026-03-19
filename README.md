@@ -26,8 +26,8 @@ Kullanıcı "Kur" der → .makine paketi indirilir → eklenti kurulur
     {
       "id": "com.makineceviri.live",
       "version": "0.1.0",
-      "githubRepo": "MakineCeviri/MakineAI-Plugin-OCR",
-      "downloadUrl": "https://github.com/.../releases/download/v0.1.0/makineai-ocr.makine",
+      "githubRepo": "MakineCeviri/Makine-LauncherPlugin-Live",
+      "downloadUrl": "https://github.com/.../releases/download/v0.1.0/makine-live.makine",
       "sha256": "abc123...",
       "size": 2500000
     }
@@ -48,7 +48,7 @@ Kullanıcı "Kur" der → .makine paketi indirilir → eklenti kurulur
 
 | Eklenti | Repo | Açıklama |
 |---------|------|----------|
-| Makine Live | [MakineAI-Plugin-OCR](https://github.com/MakineCeviri/MakineAI-Plugin-OCR) | Gerçek zamanlı ekran OCR ve çeviri overlay |
+| Makine Live | [Makine-LauncherPlugin-Live](https://github.com/MakineCeviri/Makine-LauncherPlugin-Live) | Gerçek zamanlı ekran OCR ve çeviri overlay |
 | Makine Hook | [Makine-LauncherPlugin-Hook](https://github.com/MakineCeviri/Makine-LauncherPlugin-Hook) | GDI hooking, asset parsing, bellek tarama |
 
 ## Topluluk Eklentisi Nasıl Eklenir
