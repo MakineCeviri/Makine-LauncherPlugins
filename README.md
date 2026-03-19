@@ -1,6 +1,6 @@
-# MakineAI Eklenti Kayıt Defteri
+# Makine Launcher — Eklenti Kayıt Defteri
 
-MakineAI Launcher eklenti ekosisteminin merkezi deposu.
+Makine Launcher eklenti ekosisteminin merkezi deposu.
 
 Bu depo, Launcher'ın başlangıçta kontrol ettiği `index.json` dosyasını barındırır. Eklentiler bu liste aracılığıyla keşfedilir, güncellenir ve kurulur.
 
@@ -11,7 +11,7 @@ Geliştirici eklentisini GitHub'a yükler
     ↓
 index.json'a eklenir (id, versiyon, indirme bağlantısı, SHA-256)
     ↓
-MakineAI Launcher başlangıçta index.json'u kontrol eder
+Makine Launcher başlangıçta index.json'u kontrol eder
     ↓
 Kullanıcı "Kur" der → .makine paketi indirilir → eklenti kurulur
 ```
@@ -48,14 +48,14 @@ Kullanıcı "Kur" der → .makine paketi indirilir → eklenti kurulur
 
 | Eklenti | Repo | Açıklama |
 |---------|------|----------|
-| MakineAI Live | [MakineAI-Plugin-OCR](https://github.com/MakineCeviri/MakineAI-Plugin-OCR) | Gerçek zamanlı ekran OCR ve çeviri overlay |
-| MakineAI TextHook | [MakineAI-Plugin-TextHook](https://github.com/MakineCeviri/MakineAI-Plugin-TextHook) | Oyun belleğinden metin çıkarma ve gömülü çeviri |
+| Makine Live | [MakineAI-Plugin-OCR](https://github.com/MakineCeviri/MakineAI-Plugin-OCR) | Gerçek zamanlı ekran OCR ve çeviri overlay |
+| Makine Hook | [Makine-LauncherPlugin-Hook](https://github.com/MakineCeviri/Makine-LauncherPlugin-Hook) | GDI hooking, asset parsing, bellek tarama |
 
 ## Topluluk Eklentisi Nasıl Eklenir
 
-1. [MakineAI-Plugin-Template](https://github.com/MakineCeviri/MakineAI-Plugin-Template) şablonunu kullanarak eklentinizi oluşturun
-2. GitHub'da yayınlayın ve `makineai-plugin` etiketini ekleyin
-3. Bu depoda bir [issue](https://github.com/MakineCeviri/MakineAI-Plugins/issues/new) açarak eklemenizi talep edin
+1. [Makine-LauncherPlugin-Template](https://github.com/MakineCeviri/Makine-LauncherPlugin-Template) şablonunu kullanarak eklentinizi oluşturun
+2. GitHub'da yayınlayın ve `makine-plugin` etiketini ekleyin
+3. Bu depoda bir [issue](https://github.com/MakineCeviri/Makine-LauncherPlugins/issues/new) açarak eklemenizi talep edin
 4. `index.json`'a eklenmek için PR gönderin
 
 ## Güvenlik
