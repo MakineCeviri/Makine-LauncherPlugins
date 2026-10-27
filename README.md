@@ -58,9 +58,9 @@ Kurallar:
 
 | Eklenti | Depo | Durum |
 |---------|------|-------|
-| Makine Live | [Makine-LauncherPlugin-Live](https://github.com/MakineCeviri/Makine-LauncherPlugin-Live) | ABI 2'ye taşınıyor |
+| Makine Live | [Makine-LauncherPlugin-Live](https://github.com/MakineCeviri/Makine-LauncherPlugin-Live) | ABI 2'de; sürüm etiketi bekleniyor (`tag: null`) |
 | Makine Hook | [Makine-LauncherPlugin-Hook](https://github.com/MakineCeviri/Makine-LauncherPlugin-Hook) | Listede değil: yeniden yazılması gerekiyor (ADR-0009, *Rollout*) |
 
 ## Lisans
 
-GPL-3.0
+[AGPL-3.0 + Commons Clause](LICENSE) · Lisans veren: Makine Çeviri
