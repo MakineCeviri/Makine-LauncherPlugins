@@ -1,71 +1,65 @@
 # Makine Launcher — Eklenti Kayıt Defteri
 
-Açık kaynak kodlu **[Makine Launcher](https://github.com/MakineCeviri/Makine-Launcher)** eklenti ekosisteminin merkezi deposu. Makine Launcher, Türkçe oyun çeviri paketlerini yöneten ücretsiz bir masaüstü uygulamasıdır.
+**[Makine Launcher](https://github.com/MakineCeviri/Makine-Launcher)** eklentilerinin resmî listeye girme kapısı. Eklenti eklemek ya da güncellemek isteyenler buraya PR açar; inceleme de burada yapılır.
 
-Bu depo, Launcher'ın başlangıçta kontrol ettiği `index.json` dosyasını barındırır. Eklentiler bu liste aracılığıyla keşfedilir, güncellenir ve kurulur.
-
-## Nasıl Çalışır
+Launcher bu depoyu **okumaz**. Kullanıcıların gördüğü liste CDN'deki imzalı dizindir:
 
 ```
-Geliştirici eklentisini GitHub'a yükler
-    ↓
-index.json'a eklenir (id, versiyon, indirme bağlantısı, SHA-256)
-    ↓
-Makine Launcher başlangıçta index.json'u kontrol eder
-    ↓
-Kullanıcı "Kur" der → .makine paketi indirilir → eklenti kurulur
+https://cdn.makineceviri.org/assets/plugins/index.json      eklenti listesi
+https://cdn.makineceviri.org/assets/plugins/index.json.sig  Ed25519 imzası
 ```
 
-## index.json Formatı
+Launcher imzası tutmayan dizini reddeder. Dizinde yazan SHA-256 ile eşleşmeyen paketi de kurmaz. İmza anahtarı hiçbir depoda bulunmaz.
+
+## Akış
+
+```
+Geliştirici: eklenti deposu + sürüm etiketi
+    ↓  PR: plugins.json'a { id, repo, tag } satırı
+Bakımcı: kodu inceler → etiketten derler → paketler
+    ↓  python scripts/plugin_registry.py pack | add | sign   (Makine-Launcher deposu)
+CDN: data/plugins/<id>/<sürüm>.mkplugin  +  imzalı assets/plugins/index.json
+    ↓
+Makine: Ayarlar → Eklentiler → Kur  (yetki onayı → indirme → SHA-256 → kurulum)
+```
+
+Ayrıntılı adımlar, eklenti yazma rehberi ve ABI:
+[docs/plugins/README.md](https://github.com/MakineCeviri/Makine-Launcher/blob/dev/docs/plugins/README.md).
+Tasarım gerekçesi: [ADR-0009](https://github.com/MakineCeviri/Makine-Launcher/blob/dev/docs/adr/0009-plugin-system-v2.md).
+
+## plugins.json
 
 ```json
 {
-  "version": 1,
-  "updatedAt": "2026-03-16T00:00:00Z",
   "plugins": [
-    {
-      "id": "com.makineceviri.live",
-      "version": "0.1.0",
-      "githubRepo": "MakineCeviri/Makine-LauncherPlugin-Live",
-      "downloadUrl": "https://github.com/.../releases/download/v0.1.0/makine-live.makine",
-      "sha256": "abc123...",
-      "size": 2500000
-    }
+    { "id": "org.makineceviri.live", "repo": "MakineCeviri/Makine-LauncherPlugin-Live", "tag": "v1.0.0" }
   ]
 }
 ```
 
 | Alan | Açıklama |
 |------|----------|
-| `id` | Eklentinin benzersiz kimliği (`com.gelistirici.eklenti-adi`) |
-| `version` | Semantik versiyon (`1.0.0`) |
-| `githubRepo` | GitHub repo yolu (`Kullanici/Repo`) |
-| `downloadUrl` | `.makine` dosyasının doğrudan indirme bağlantısı |
-| `sha256` | Paketin SHA-256 sağlama toplamı |
-| `size` | Paket boyutu (byte) |
+| `id` | Eklentinin `manifest.json` içindeki kimliği (ters alan adı: `org.ornek.eklenti`) |
+| `repo` | Kaynak kodun GitHub deposu (`Kullanici/Repo`) |
+| `tag` | İncelenip derlenecek sürüm etiketi; `null` = henüz yayımlanmadı |
 
-## Resmi Eklentiler
+## Eklenti nasıl eklenir
 
-| Eklenti | Repo | Açıklama |
-|---------|------|----------|
-| Makine Live | [Makine-LauncherPlugin-Live](https://github.com/MakineCeviri/Makine-LauncherPlugin-Live) | Gerçek zamanlı ekran OCR ve çeviri overlay |
-| Makine Hook | [Makine-LauncherPlugin-Hook](https://github.com/MakineCeviri/Makine-LauncherPlugin-Hook) | GDI hooking, asset parsing, bellek tarama |
+1. [Makine-LauncherPlugin-Template](https://github.com/MakineCeviri/Makine-LauncherPlugin-Template) şablonundan başlayın (ABI 2).
+2. Eklentinizi `plugin_dev.py` ile deneyin, ardından Makine'de *Geliştirici modu → Dosyadan yükle* ile kurup test edin.
+3. Deponuzda bir sürüm etiketi oluşturun ve bu depoya `plugins.json` satırını ekleyen bir PR açın.
 
-## Topluluk Eklentisi Nasıl Eklenir
+Kurallar:
+- Her yetki (`network`, `screen-capture`, `overlay`, `game-files-read`, `game-files-write`, `process-inject`) için kullanıcının okuyacağı Türkçe bir gerekçe yazılmalı.
+- Hile koruması olan oyunlara bağlanmaya çalışan eklentiler listeye alınmaz.
+- Listede olmayan eklentiler yalnızca dosyadan, geliştirici modunda ve *Doğrulanmamış* işaretiyle kurulabilir. GitHub etiketiyle (`makine-plugin`) keşif kaldırıldı.
 
-1. [Makine-LauncherPlugin-Template](https://github.com/MakineCeviri/Makine-LauncherPlugin-Template) şablonunu kullanarak eklentinizi oluşturun
-2. GitHub'da yayınlayın ve `makine-plugin` etiketini ekleyin
-3. Bu depoda bir [issue](https://github.com/MakineCeviri/Makine-LauncherPlugins/issues/new) açarak eklemenizi talep edin
-4. `index.json`'a eklenmek için PR gönderin
+## Resmî eklentiler
 
-## Güvenlik
-
-- Tüm indirmeler yalnızca **HTTPS** üzerinden
-- Her paket **SHA-256** sağlama toplamı ile doğrulanır
-- `.makine` formatı (MKPK v2) — zstd sıkıştırmalı tar arşivi
-- ZIP yol geçişi koruması (path traversal engeli)
-- Tehlikeli dosya türleri engellenir (.exe, .bat, .cmd, .ps1)
-- DLL imza doğrulaması (Authenticode)
+| Eklenti | Depo | Durum |
+|---------|------|-------|
+| Makine Live | [Makine-LauncherPlugin-Live](https://github.com/MakineCeviri/Makine-LauncherPlugin-Live) | ABI 2'ye taşınıyor |
+| Makine Hook | [Makine-LauncherPlugin-Hook](https://github.com/MakineCeviri/Makine-LauncherPlugin-Hook) | Listede değil: yeniden yazılması gerekiyor (ADR-0009, *Rollout*) |
 
 ## Lisans
 
